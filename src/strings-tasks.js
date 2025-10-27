@@ -468,8 +468,13 @@ function extractEmails(str) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  return str.replace(/[A-Za-z]/g, (char) => {
+    const start = char <= 'Z' ? 65 : 97;
+    return String.fromCharCode(
+      ((char.charCodeAt(0) - start + 13) % 26) + start
+    );
+  });
 }
 
 /**
